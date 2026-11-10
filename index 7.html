@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday | cupidcrafted</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Great+Vibes&family=Handlee&family=DM+Serif+Display&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F8C8DC;
+  --cake-light:#F3D7B6;
+  --cake-mid:#D8B08C;
+  --chocolate-deep:#3b1e1e;
+  --chocolate-mid:#5A2E0F;
+  --deep-pink:#D82E6D;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--pink);
+  font-family:sans-serif;
+  overflow:hidden;
+  height:100vh;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+}
+.hero-section{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1000;
+}
+.bg-video{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.hero-text{
+position:absolute;
+top:12%;
+width:100%;
+padding:0 20px;
+text-align:center;
+color:white;
+text-shadow:0 2px 14px rgba(0,0,0,0.55);
+}
+.hero-title{ font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:2rem; line-height:1.2; color:#FFD54A; }
+.enter-btn{
+  position: absolute;
+  bottom: 80px;
+  padding: 15px 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  background: #3b1e1e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+}
+.cake-text{
+position: absolute;
+top: 7%;
+width: 100%;
+font-family: 'DM Serif Display', serif;
+font-size: 1.8rem;
+color: var(--chocolate-deep);
+letter-spacing: 1px;
+z-index: 10;
+text-align: center;
+padding: 0 20px;
+}
+section{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+}
+section.active{display:flex;}
+.cake-wrapper{
+margin-top: 300px;
+cursor: pointer;
+}
+.plate{
+position:relative;
+width:340px;
+height:20px;
+background:white;
+border-radius:50%;
+box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+.cake{
+position:absolute;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+width:280px;
+height:200px;
+background:linear-gradient(to bottom,var(--cake-light),var(--cake-mid));
+border-radius:30px 30px 15px 15px;
+}
+.chocolate-top {
+position: absolute;
+top: -20px;
+width: 100%;
+height: 40px;
+background: var(--chocolate-deep);
+border-radius: 50%;
+z-index: 2;
+}
+.garland {
+position: absolute;
+top: 0px;
+width: 100%;
+height: 60px;
+background-image: radial-gradient(circle at 35px 0px, var(--chocolate-deep) 35px, transparent 36px);
+background-size: 70px 70px;
+background-repeat: repeat-x;
+filter: drop-shadow(0px 4px 2px rgba(0,0,0,0.15));
+z-index: 1;
+}
+.layer{
+position:absolute;
+top:115px;
+width:100%;
+height:10px;
+background:var(--chocolate-mid);
+}
+.candle-row{
+position:absolute;
+top:-85px;
+width:120px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+justify-content:space-between;
+z-index: 4;
+}
+.candle{
+width:18px;
+height:75px;
+background:#C62828;
+border-radius:4px;
+position:relative;
+}
+.flame{
+position:absolute;
+top:-30px;
+left:50%;
+transform:translateX(-50%);
+width:22px;
+height:35px;
+background:orange;
+border-radius:50% 50% 30% 30%;
+box-shadow:0 0 20px orange;
+animation:flicker .1s infinite alternate;
+}
+@keyframes flicker{
+from{transform:translateX(-50%) scale(1);}
+to{transform:translateX(-50%) scale(1.15);}
+}
+.out{display:none!important;}
+.reveal-title{ font-family:'Bebas Neue',sans-serif; font-size:5rem; color:var(--deep-pink); }
+.reveal-sub{ font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--deep-pink); margin-top:10px;}
+.photo{
+width:auto;
+max-width:70vw;
+height:38vh;
+object-fit:cover;
+border:8px solid white;
+border-bottom-width:24px;
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+transform:rotate(-2deg);
+margin:10px 0;
+}
+.read-btn{
+background:var(--chocolate-deep);
+color:white;
+border:none;
+padding:8px 20px;
+font-family:'Bebas Neue';
+font-size:0.9rem;
+cursor:pointer;
+letter-spacing: 1.5px;
+margin-top: 10px;
+}
+.mini-polaroid{ width:110px; background:white; padding:6px 6px 20px; box-shadow:0 10px 20px rgba(0,0,0,0.2); transform:rotate(-2deg); margin-bottom:20px; }
+.mini-polaroid img{ width:100%; height:100px; object-fit:cover; object-position:center 25%; }
+.letter{
+max-width:420px;
+padding:30px;
+font-family:'Handlee',cursive;
+font-size:1.2rem;
+line-height:1.8;
+background:repeating-linear-gradient(to bottom,#fffdf8,#fffdf8 26px,#f1e7d8 27px);
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
+.signature{ font-family:'Great Vibes',cursive; font-size:2rem; margin-top:20px; display:block; }
+#letter-page{ overflow-y:auto; justify-content:safe center; }
+#gallery{ overflow-y:auto; justify-content:flex-start; padding:40px 20px 60px; }
+.gallery-title{ font-family:'Bebas Neue',sans-serif; font-size:2.6rem; color:var(--deep-pink); letter-spacing:1px; margin-bottom:20px; }
+.gallery-grid{ display:flex; flex-direction:column; align-items:center; gap:28px; width:100%; }
+.gallery-grid img{ width:100%; max-width:340px; height:auto; background:white; padding:8px 8px 26px; box-shadow:0 15px 35px rgba(0,0,0,0.25); transform:rotate(var(--r)); }
+.gallery-end{ font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--chocolate-deep); letter-spacing:1.5px; margin-top:34px; }
+#canvas{ position:fixed; top:0; left:0; pointer-events:none; z-index:100; }
+</style>
+</head>
+<body onload="startExperience()">
+<canvas id="canvas"></canvas>
+
+<section id="hero" class="active hero-section">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-text">
+    <div class="hero-title">Happy Birthday, Beautiful</div>
+  </div>
+  <button class="enter-btn" onclick="enterSite()">Enter</button>
+</section>
+
+<section id="start">
+  <h2 class="cake-text">MAKE A WISH AND BLOW YOUR CANDLES</h2>
+  <div class="cake-wrapper" onclick="manualBlow()">
+    <div class="plate">
+      <div class="cake">
+        <div class="chocolate-top"></div>
+        <div class="garland"></div>
+        <div class="layer"></div>
+        <div class="candle-row">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reveal">
+  <h1 class="reveal-title">YOU'RE 26?</h1>
+  <img src="g1.jpg" class="photo">
+  <h2 class="reveal-sub">NO ONE HAS TO KNOW, BABYGIRL.</h2>
+  <button class="read-btn" onclick="showGallery()">SEE YOUR PHOTOS</button>
+</section>
+
+<section id="letter-page">
+  <div class="mini-polaroid">
+    <img src="g6.jpg">
+  </div>
+  <div class="letter">
+  Happy 26th, Miss Enny!  <br><br>
+  If anyone asks, we're keeping it at 21. You just keep glowing brighter every year.  <br><br>
+  I hope this year brings you laughter, soft love, and endless joy.  <br><br>
+  26 looks amazing on you!  <br><br>
+  <span class="signature">Love always, CupidCrafted</span>
+  </div>
+</section>
+
+<section id="gallery">
+  <h1 class="gallery-title">JUST FOR YOU, MISS ENNY</h1>
+  <div class="gallery-grid">
+    <img src="g6.jpg" style="--r:-2deg">
+    <img src="g4.jpg" style="--r:2deg">
+    <img src="g3.jpg" style="--r:-1.5deg">
+    <img src="g2.jpg" style="--r:2deg">
+    <img src="g5.jpg" style="--r:-2deg">
+    <img src="g1.jpg" style="--r:1.5deg">
+  </div>
+  <p class="gallery-end">HAPPY BIRTHDAY, BEAUTIFUL</p>
+  <button class="read-btn" style="margin-top:20px" onclick="showLetter()">READ LETTER</button>
+</section>
+
+<script>
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+let isBlown=false;
+let particles = [];
+let confetti = [];
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.onresize = resize;
+resize();
+
+async function startExperience(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const audioContext=new (window.AudioContext||window.webkitAudioContext)();
+    const analyser=audioContext.createAnalyser();
+    const mic=audioContext.createMediaStreamSource(stream);
+    analyser.fftSize=256;
+    mic.connect(analyser);
+    const dataArray=new Uint8Array(analyser.frequencyBinCount);
+    function detect(){
+      if(isBlown) return;
+      analyser.getByteFrequencyData(dataArray);
+      let avg=dataArray.reduce((a,b)=>a+b)/dataArray.length;
+      if(avg > 60){
+          manualBlow();
+          stream.getTracks().forEach(t=>t.stop());
+      }
+      requestAnimationFrame(detect);
+    }
+    detect();
+  }catch(e){console.log("Mic blocked");}
+}
+
+function manualBlow(){
+  if(isBlown) return;
+  isBlown=true;
+  document.querySelectorAll(".flame").forEach(f=>f.classList.add("out"));
+  createBurst(canvas.width/2, canvas.height/2, 100);
+  setTimeout(()=>show("reveal"), 2000);
+}
+
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function enterSite(){
+  document.querySelector(".enter-btn").style.display = "none";
+  document.getElementById("hero").style.display = "none";
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById("start").classList.add("active");
+}
+
+function showGallery(){
+  show("gallery");
+  document.getElementById("gallery").scrollTop=0;
+}
+
+function showLetter(){
+  show("letter-page");
+  setInterval(() => {
+    createBurst(Math.random()*canvas.width, Math.random()*canvas.height/2, 50);
+  }, 1000);
+  for(let i=0; i<100; i++){
+    confetti.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        size: Math.random()*6+4,
+        speed: Math.random()*2+1,
+        color: `hsl(${Math.random()*360}, 100%, 70%)`
+    });
+  }
+}
+
+function createBurst(x, y, count) {
+    let colors=["#ff4e50","#ffd700","#ff69b4","#00cfff","#7cfc00","#ff8c00"];
+    for(let i=0; i<count; i++){
+        particles.push({
+            x: x, y: y,
+            vx: (Math.random()-0.5)*15,
+            vy: (Math.random()-0.5)*15,
+            alpha: 1,
+            color: colors[Math.floor(Math.random()*colors.length)]
+        });
+    }
+}
+
+function update() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p, i) => {
+        p.x += p.vx; p.y += p.vy; p.alpha -= 0.015;
+        if(p.alpha <= 0) particles.splice(i, 1);
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill();
+    });
+    confetti.forEach(c => {
+        c.y += c.speed;
+        if(c.y > canvas.height) c.y = -10;
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = c.color;
+        ctx.fillRect(c.x, c.y, c.size, c.size);
+    });
+    requestAnimationFrame(update);
+}
+update();
+</script>
+</body>
+</html>
